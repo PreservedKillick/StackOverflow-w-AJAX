@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   def index
+    @user = User.new
+    @users = User.all
   end
 
   def new
@@ -10,11 +12,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User Created!"
+      session[:user_id] = @user.id
+      flash[:notice] = "Thanks for signing up!"
       redirect_to root_url
     else
       render 'new'
     end
+  end
+
+  def show
+    @user = User.find(params:[:id])
   end
 
 
