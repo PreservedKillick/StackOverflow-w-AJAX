@@ -36,8 +36,8 @@
               <div class="dropdown-menu" style="padding: 15px; padding-bottom: 5px;">
                 <%= form_tag sessions_path do |f| %>
                   <div class="form-group">
-                    <%= label_tag "User Name" %>
-                    <%= text_field_tag :username %><br>
+                    <%= label_tag "User name" %>
+                    <%= text_field_tag :username, params[:username] %><br>
                     <%= label_tag "Password" %>
                     <%= password_field_tag :password %><br>
                   </div>
@@ -46,7 +46,7 @@
               </div>
             </li>
             <li class="dropdown">
-             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up <strong class="caret"></strong></a>
+             <a id="sign-up" class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up<strong class="caret"></strong></a>
             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 5px;">
 
               <%= form_for(@user) do |f| %>
@@ -62,11 +62,11 @@
                 <% end %>
 
                 <div class="form-group">
-                  <%= f.label "User Name" %>
+                  <%= f.label :username, "User name" %>
                   <%= f.text_field :username %><br>
-                  <%= f.label "Password" %>
+                  <%= f.label :password, "Password" %>
                   <%= f.password_field :password %><br>
-                  <%= f.label "Confirm Password" %>
+                  <%= f.label :password_confirmation, "Confirm password" %>
                   <%= f.password_field :password_confirmation %>
                 </div>
                 <%= f.submit(:class => 'btn btn-primary') %>
