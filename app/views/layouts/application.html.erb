@@ -50,17 +50,6 @@
             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 5px;">
 
               <%= form_for(@user) do |f| %>
-                <% if @user.errors.any? %>
-                  <div class="error_messages">
-                    <h3>Please correct the following: </h3>
-                    <ul>
-                      <% @user.errors.full.messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-
                 <div class="form-group">
                   <%= f.label :username, "User name" %>
                   <%= f.text_field :username %><br>
@@ -77,9 +66,16 @@
         </ul>
       </div>
     </div>
-
-    <% flash.each do |name ,msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <%= bootstrap_flash %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h3>Please correct the following: </h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
     <%= yield %>
   </div>
