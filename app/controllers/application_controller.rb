@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to root_url
-    flash[:alert] = "Please login in!" if current_user.nil?
+    if current_user.nil?
+      flash[:notice] = "Please login in!"
+      redirect_to root_url
+    end
   end
 end

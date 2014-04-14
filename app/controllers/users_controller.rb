@@ -14,14 +14,24 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Thanks for signing up!"
-      redirect_to root_url
+      redirect_to user_path(@user)
     else
       render 'index'
     end
   end
 
   def show
-    @user = User.find(params:[:id])
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "Profile has been updated!"
+      redirect_to user_path(@user)
+    else
+      render :back
+    end
   end
 
 

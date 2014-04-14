@@ -1,0 +1,7 @@
+<%= form_for [@user, @question], remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :query, "Question" %>
+    <%= f.text_field :query %>
+  </div>
+  <%= f.submit(:class => 'btn btn-primary') %>
+<% end %>

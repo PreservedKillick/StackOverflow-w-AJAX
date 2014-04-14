@@ -3,8 +3,12 @@ StackOverflowClone::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'signup', to: 'users#new', as: 'signup'
 
-  resources :users
+  resources :users do
+    resources :questions, :except => [:index, :show]
+  end
+
   resources :sessions
+  resources :questions, :only => [:index, :show]
 
   root :to => 'users#index'
 end
