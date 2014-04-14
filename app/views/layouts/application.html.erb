@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<div id="user_header">
+  <% if current_user %>
+    Logged in as <%= current_user.name %>
+    <%= link_to "Log Out", logout_path %>.
+  <% else %>
+    <%= link_to "Log in", login_path %>
+  <% end %>
+</div>
+<div class="container">
+  <%= flash[:alert] %>
+  <%= flash[:notice] %>
+
 <%= yield %>
 
 </body>
